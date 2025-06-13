@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define TAM_NOME (10 * sizeof(char))
+#define TAM_EMAIL (10 * sizeof(char))
+#define TAM_IDADE (sizeof(int))
+#define PESSOA ((TAM_EMAIL + TAM_IDADE + TAM_NOME))
+
+int main() {
+    void * pBuffer = malloc(sizeof(int) * 2);
+    void * menu = (char *)(pBuffer);
+    void * qtde = ((char *)(pBuffer) + sizeof(int));
+
+    void * comecoPessoa = NULL;
+    void * incrementador = NULL;
+    //void * final = NULL;
+
+    *(int *)menu = 0;
+    *(int *)qtde = 0;
+
+    while(1) {
+        
+        printf("\n- - - - M E N U - - - -\n");
+        printf("\n1.\tADIONAR PESSOA");
+        printf("\n2.\tREMOVER PESSOA");
+        printf("\n3.\tBUSCAR PESSOA");
+        printf("\n4.\tLISTAR TUDO");
+        printf("\n5.\tSAIR");
+        printf("\n- - - - - - - - - - - -\n");
+    
+        printf("E S C O L H A : ");
+
+        scanf("%d", &*(int *)menu);
+
+        switch (*(int *)menu) {
+            case 1:
+                *(int *)qtde += 1;
+
+                pBuffer = realloc(pBuffer,((sizeof(int) * 2) + ((PESSOA) * (*(int *)qtde))));
+                menu = pBuffer + sizeof(int);
+                qtde = pBuffer + (sizeof(int) * 2);                
+
+                comecoPessoa = pBuffer + ((sizeof(int) * 2) + sizeof(char));
+                incrementador = comecoPessoa;
+
+                //scanf("%s", &*((char *)incrementador + ((*(int *)qtde - 1) * PESSOA)));
+                incrementador += TAM_NOME;
+                //scanf("%d", &*((int *)incrementador + ((*(int *)qtde - 1) * PESSOA)));
+                incrementador = comecoPessoa;
+                //incrementador 
+                //scanf("%s", &*((char *)incrementador + ((*(int *)qtde - 1) * PESSOA)));
+
+                break;
+            case 2:
+
+            case 3:
+
+            case 4:
+                //pBuffer = realloc(pBuffer,(sizeof(int) * 2) + (PESSOA * *(int *)qtde) + 1);
+
+            case 5:
+                exit(0);
+                break;
+        }
+    }
+
+
+
+}
