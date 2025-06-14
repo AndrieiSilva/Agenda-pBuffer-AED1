@@ -35,3 +35,7 @@ Não pode usar struct em todo o programa.
 
 ## Realização do exercício:
 
+O código funciona como deveria (o que não funciona direito é o VS CODE, que fica dando pause durante a execução, fica escrito no debugger "Pause on Pause");
+
+Testei o código adicionando pessoas, removendo, buscando e listando pessoas da lista. Funcionou certo. 
+### **OBS :** _O código não verifica a entrada, ou seja, ele supõe que o usuário seja "bonzinho"._
