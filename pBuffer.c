@@ -24,8 +24,8 @@ int main() {
 
     while(1) {
         
-        printf("\n- - - - M E N U - - - -\n");
-        printf("\n1.\tADIONAR PESSOA");
+        printf("\n- - - - M E N U - - - -");
+        printf("\n1.\tADICIONAR PESSOA");
         printf("\n2.\tREMOVER PESSOA");
         printf("\n3.\tBUSCAR PESSOA");
         printf("\n4.\tLISTAR TUDO");
@@ -47,16 +47,17 @@ int main() {
                 qtde = (int *)pBuffer + 1;                
 
                 incrementador = (char *)pBuffer + sizeof(int) * 2 + PESSOA * (*(int *)qtde - 1);
-                printf("\n");
+                printf("\n- - - - - - - - - - - -\n");
                 printf("NOME: ");
                 scanf("%s", (char *)(incrementador));
                 printf("IDADE: ");
                 scanf("%d", (int *)(incrementador + TAM_NOME));
                 printf("EMAIL: ");
                 scanf("%s", (char *)(incrementador + TAM_IDADE + TAM_NOME));
+                printf("- - - - - - - - - - - -\n");
                 break;
             case 2:
-                printf("PESSOA NOME: ");
+                printf("REMOVER NOME: ");
                 pBuffer = realloc(pBuffer,(sizeof(int) * 2) + PESSOA * (*(int *)qtde) + PESSOA);
                 menu = (int *)pBuffer;
                 qtde = (int *)pBuffer + 1;
@@ -85,7 +86,7 @@ int main() {
 
                 break;
             case 3:
-                printf("PESSOA NOME: ");
+                printf("BUSCAR NOME: ");
                 pBuffer = realloc(pBuffer,(sizeof(int) * 2) + PESSOA * (*(int *)qtde) + PESSOA);
                 menu = (int *)pBuffer;
                 qtde = (int *)pBuffer + 1;
@@ -123,11 +124,11 @@ int main() {
                 incrementador = comecoPessoa;
 
                 while ((*(int *)final) > 0) {
-                    printf("\n");
+                    printf("- - - - - - - - - - - -\n");
                     printf("NOME:\t%s", (char *)(incrementador));
                     printf("\nIDADE:\t%d", *(int *)(incrementador + TAM_NOME));
                     printf("\nEMAIL:\t%s", (char *)(incrementador + TAM_NOME + TAM_IDADE));
-                    printf("\n");
+                    printf("\n- - - - - - - - - - - -\n");
                     incrementador = incrementador + PESSOA;
                     *(int *)final -= 1;
                 }
@@ -135,6 +136,12 @@ int main() {
                 pBuffer = realloc(pBuffer,(sizeof(int) * 2) + PESSOA * (*(int *)qtde));
                 menu = (int *)pBuffer;
                 qtde = (int *)pBuffer + 1;
+
+                if (!(*(int *)qtde)) {
+                    printf("- - - - - - - - - - - -\n");
+                    printf("Agenda Vazia!!!");
+                    printf("\n- - - - - - - - - - - -\n");
+                }
                 break;
             case 5:
                 exit(0);
